@@ -15,8 +15,8 @@ services:
   falkordb-browser:
     image: falkordb/falkordb-browser:latest
     restart: unless-stopped
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     networks:
       - falkordb-network
     depends_on:
