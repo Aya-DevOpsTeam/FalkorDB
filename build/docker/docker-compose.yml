@@ -4,23 +4,23 @@ services:
     restart: unless-stopped
     expose:
       - "6379"
-    networks:
-      - falkordb-network
     environment:
-      - REDIS_ARGS=/etc/falkordb/falkordb.conf
+      REDIS_ARGS: /etc/falkordb/falkordb.conf
     volumes:
       - falkordb-data:/data
       - ./falkordb.conf:/etc/falkordb/falkordb.conf:ro
+    networks:
+      - falkordb-network
 
   falkordb-browser:
     image: falkordb/falkordb-browser:latest
     restart: unless-stopped
-    expose:
-      - "3000"
-    networks:
-      - falkordb-network
+    ports:
+      - "127.0.0.1:3001:3000"
     depends_on:
       - falkordb-server
+    networks:
+      - falkordb-network
 
 networks:
   falkordb-network:
