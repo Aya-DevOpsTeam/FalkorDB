@@ -4,6 +4,8 @@ services:
     restart: unless-stopped
     expose:
       - "6379"
+    ports:
+      - "6389:6379"
     environment:
       REDIS_ARGS: /etc/falkordb/falkordb.conf
     volumes:
